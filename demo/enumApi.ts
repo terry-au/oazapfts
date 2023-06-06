@@ -28,10 +28,10 @@ export type Pet = {
   name: string;
   photoUrls: string[];
   tags?: Tag[];
-  status?: 'available' | 'pending' | 'sold' | 'private' | '10percent';
+  status?: Status;
   animal?: true;
-  size?: 'P' | 'M' | 'G' | '0';
-  typeId?: 1 | 2 | 3 | 4 | 6 | 8;
+  size?: Size;
+  typeId?: TypeId;
 };
 export type ApiResponse = {
   code?: number;
@@ -43,7 +43,7 @@ export type Order = {
   petId?: number;
   quantity?: number;
   shipDate?: string;
-  status?: 'placed' | 'approved' | 'delivered';
+  status?: Status2;
   complete?: boolean;
 };
 export type User = {
@@ -55,7 +55,7 @@ export type User = {
   password?: string;
   phone?: string;
   userStatus?: number;
-  category?: 'rich' | 'wealthy' | 'poor';
+  category?: Category2;
 };
 export type Schema = string;
 export type Schema2 = number;
@@ -572,4 +572,35 @@ export function issue330(body?: string, opts?: Oazapfts.RequestOpts) {
       body,
     }),
   );
+}
+export enum Status {
+  Available = 'available',
+  Pending = 'pending',
+  Sold = 'sold',
+  Private = 'private',
+  $10Percent = '10percent',
+}
+export enum Size {
+  P = 'P',
+  M = 'M',
+  G = 'G',
+  $0 = '0',
+}
+export enum TypeId {
+  Dog = 1,
+  Cat = 2,
+  Tiger = 3,
+  Mouse = 4,
+  House = 6,
+  $3HeadedMonkey = 8,
+}
+export enum Status2 {
+  Placed = 'placed',
+  Approved = 'approved',
+  Delivered = 'delivered',
+}
+export enum Category2 {
+  Rich = 'rich',
+  Wealthy = 'wealthy',
+  Poor = 'poor',
 }
